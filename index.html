@@ -1,0 +1,33 @@
+<html>  
+    <head> 
+        <title> Zombiegame</title>
+        <script src="./js/jquery.js"></script>
+        <script src="./js/engine.js"></script>
+        <script src="./js/inventario.js"></script>
+        <script src="./js/localizacion.js"></script>
+        <script src="./js/superviviente.js"></script>
+        <link rel="stylesheet" href="./css/main.css">
+        <script>
+            game.newGame();
+        </script>
+    </head>
+    <body>
+        <div id='datosGame' onclick='game.nextRound()'>
+            <div class='boton'>Next!</div>
+            Moral: <span id='moral'></span>
+            Turno: <span id='turno'></span
+            supervivientes: <span id='supervivientes'></span>
+            Indefensos: <span id='indefensos'></span>
+            Comida: <span id='comida'></span>
+            Acciones: <span id='acciones'></span>
+        </div>
+        <div id='contenido'>
+            <div id='columnaPj'>
+
+            </div>                        
+            <div id='columnaLocalizaciones'>
+
+            </div>            
+        </div>
+    </body>
+</html>
