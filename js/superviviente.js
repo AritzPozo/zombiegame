@@ -217,24 +217,29 @@ var superviviente={
         local=game.supervivientes[pjamorir].posicion;
         if(tipoMuerte==0){
             alert(game.supervivientes[pjamorir].nombre+" ha sido mordido y convertido en zombie.");
-            
-            game.listaLocalizaciones[local].huecosZombieOcupados++;
+            if(local!=-1){
+                game.listaLocalizaciones[local].huecosZombieOcupados++;
+            }
             localizacion.setDibujarLocalizaciones();
         }else{
             alert("Ha muerto "+game.supervivientes[pjamorir].nombre);
         }
         newar=[];
-        for(sz=0;sz<game.listaLocalizaciones[local]['huecosSupervivientesOcupados'].length;sz++){
-            if(game.listaLocalizaciones[local]['huecosSupervivientesOcupados'][sz]!=pjamorir){
-                newar.push(game.listaLocalizaciones[local]['huecosSupervivientesOcupados'][sz]);
+        if(local!=-1){
+            for(sz=0;sz<game.listaLocalizaciones[local]['huecosSupervivientesOcupados'].length;sz++){
+                if(game.listaLocalizaciones[local]['huecosSupervivientesOcupados'][sz]!=pjamorir){
+                    newar.push(game.listaLocalizaciones[local]['huecosSupervivientesOcupados'][sz]);
+                }
             }
         }
+        if(local!=-1){
         game.listaLocalizaciones[local]['huecosSupervivientesOcupados']=newar;
         newar=[];
         for(sz=0;sz<game.supervivientes.length;sz++){
             if(sz!=pjamorir){
                 newar.push(game.supervivientes[sz]);
             }
+        }
         }
         game.supervivientes=newar;
         if(game.supervivientes.length<=0){
@@ -296,6 +301,49 @@ var superviviente={
         }
         if(game.pjAct!=-1){
             game.selectPj(game.pjAct);
+        }
+    },
+    explorar: function(){
+        
+        if(game.pjAct!=-1 && game.accRest>0){
+            game.accRest--;
+            randomExplo=Math.random();
+            posMoverse=Math.floor(Math.random() * 20) + 1;
+            if(posMoverse<=14){
+                todoOk=1;
+            }else if(posMoverse<=19){
+                todoOk=2;
+            }else{
+                todoOk=0;
+            }  
+            if(todoOk>0){
+                if(randomExplo>0.7){
+                    alert(game.supervivientes[game.pjAct].nombre+" ha descubierto una nueva localdiad");
+                    localizacion.generar();
+                    game.supervivientes[game.pjAct].posicion=game.listaLocalizaciones.length-1;
+                    game.listaLocalizaciones[game.listaLocalizaciones.length-1].huecosSupervivientesOcupados=[game.pjAct];
+                }else{
+                    alert("No ha encontrado nada");
+                }
+            }
+            if(todoOk==1){
+                todoOk=1;   
+            }else if(todoOk==2){
+                todoOk=2;
+                game.supervivientes[game.pjAct].vidaAct--;
+                if(game.supervivientes[game.pjAct].vidaAct<=0){
+                   superviviente.serComidoPorPj(game.pjAct,1);
+                }
+            }else{
+                todoOk=0;
+                superviviente.serComidoPorPj(game.pjAct,0);
+            }  
+            setTimeout(function(){
+                game.mostrarDatos();  
+                localizacion.setDibujarLocalizaciones();
+                superviviente.dibujarpj();
+            })          
+            
         }
     }
 }

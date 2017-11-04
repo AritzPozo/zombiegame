@@ -18,6 +18,7 @@ var game={
 
     },
     nextRound: function(){
+        game.accRest=game.cantSuperv;
         game.turnoAct++;
         game.comida=game.comida-(game.cantSuperv+game.cantIndef)/2;
 		if(game.comida<0){
@@ -57,12 +58,10 @@ var game={
        setTimeout(function(){
             
         game.mostrarDatos();  
-			localizacion.generar("Campamento",20,15);
-    		localizacion.generar("Hospital",3,3);
-        	localizacion.generar("Colegio",3,3);
-        	localizacion.generar("Comisaria",3,3);
-        	localizacion.generar("Supermercado",3,3);
-        	localizacion.generar("Biblioteca",3,3);  
+            localizacion.generarCampamento();
+            localizacion.generar();
+            localizacion.generar();
+            localizacion.generar();
             
             pjtots=Math.round(Math.random()*3)+2;
             pjar=[];

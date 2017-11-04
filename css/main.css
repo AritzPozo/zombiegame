@@ -65,6 +65,15 @@ body{
     width:200px;
     text-align: center;
 }
+.mboton{
+    padding:5px;
+    margin:auto;
+    background-color: #666666;
+    color:white;
+    font-size:15px;
+    text-align: center;
+    width:75%;
+}
 .huechz{
     float:right;
     width:10px;
@@ -118,7 +127,7 @@ body{
 .localizacionimg div{
     font-size:20px;
     text-align: center;
-    padding:25px;
+    padding:5px;
     font-weight: bold;
 }
 .pjatributos{
@@ -138,4 +147,8 @@ body{
         width:50%;
         float:left;
     }   
+}
+.medio{
+    width:50%;
+    float:left;   
 }
