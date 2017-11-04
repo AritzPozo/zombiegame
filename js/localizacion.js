@@ -57,7 +57,7 @@ var localizacion={
                 hz+="<div class='huechz huechzl'>z</div>";
                     x++;
             }                         
-            locaDesk="<div class='locabox' onclick='superviviente.mover("+(li)+")'><h2>"+game.listaLocalizaciones[li].nombre+"</h2>"+
+            locaDesk="<div class='locabox' onclick='superviviente.mover("+(li)+")'><div class='localizacionimg'><div>"+game.listaLocalizaciones[li].nombre+"</div></div>"+
             "Spr.:"+hs+"<br/>"+
             "Zmb:"+hz+
             "</div>"

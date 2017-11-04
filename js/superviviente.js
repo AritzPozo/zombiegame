@@ -29,9 +29,9 @@ var superviviente={
         var randsName = surnames[Math.floor(Math.random() * surnames.length)];
         superviviente.profesion= profesiones[Math.floor(Math.random() * profesiones.length)];
         superviviente.nombre=randName+" "+randsName.toLowerCase();
-        superviviente.busqueda=Math.round(Math.random()*2)+5;
-        superviviente.ataque=6-superviviente.busqueda;
-        superviviente.liderazgo=Math.round(Math.random()*20)+60;
+        superviviente.busqueda=Math.round(Math.random()*5)+1;
+        superviviente.ataque=7-superviviente.busqueda;
+        superviviente.liderazgo=Math.round(Math.random()*60)+20;
 
         superviviente.vidaTot=Math.round(Math.random()*3)+2;
         superviviente.hambre=Math.round(Math.random()*3)+2;
@@ -63,9 +63,9 @@ var superviviente={
     mover: function(posNueva){
         
         posMoverse=Math.floor(Math.random() * 20) + 1;
-        if(posMoverse<12){
+        if(posMoverse<=14){
             todoOk=1;
-        }else if(posMoverse<18){
+        }else if(posMoverse<=19){
             todoOk=2;
         }else{
             todoOk=0;
@@ -85,9 +85,9 @@ var superviviente={
                 if(antPos==-1){
                     console.log(antPos);
                     
-                    console.log("La nueva posicion del pj es: "+game.listaLocalizaciones[posNueva].nombre);
+                    console.log(game.supervivientes[game.pjAct].nombre+" se ha movido a "+game.listaLocalizaciones[posNueva].nombre);
                     if(todoOk==2){
-                        console.log("Ha sido mordido y ha recibido un punto de daño.");
+                        console.log(game.supervivientes[game.pjAct].nombre+" ha sido mordido y ha recibido un punto de daño.");
                     }
                 }else{
                     newar=[];
@@ -99,9 +99,9 @@ var superviviente={
                         }
                     }
                     game.listaLocalizaciones[antPos]['huecosSupervivientesOcupados']=newar;
-                    console.log("El personaje se ha movido de "+game.listaLocalizaciones[antPos].nombre+" a "+game.listaLocalizaciones[posNueva].nombre);
+                    console.log(game.supervivientes[game.pjAct].nombre+" se ha movido de "+game.listaLocalizaciones[antPos].nombre+" a "+game.listaLocalizaciones[posNueva].nombre);
                     if(todoOk==2){
-                        console.log("Ha sido mordido y ha recibido un punto de daño.");
+                        console.log(game.supervivientes[game.pjAct].nombre+" ha sido mordido y ha recibido un punto de daño.");
                     }
                     
                 }
@@ -113,7 +113,7 @@ var superviviente={
                 newar.push(game.pjAct)
                 game.listaLocalizaciones[posNueva]['huecosSupervivientesOcupados']=newar;
                 game.supervivientes[game.pjAct]['posicion']=posNueva;
-                if(todoOk==11){
+                if(todoOk==1){
                     todoOk=1;
                     console.log()
                 }else if(todoOk==2){
@@ -272,7 +272,17 @@ var superviviente={
             }             
             jcnt=jcnt+"</div></div>"+
             "</div>"+
-            "</div>";
+            "<div class='pjatributos'>"+
+            "<div class='tercio'>"+
+            '<i class="fa fa-crosshairs" aria-hidden="true"></i> '+game.supervivientes[sz].ataque+
+            "</div>"+
+            "<div class='tercio'>"+
+            '<i class="fa fa-binoculars" aria-hidden="true"></i> '+game.supervivientes[sz].busqueda+            
+            "</div>"+
+            "<div class='tercio'>"+
+            '<i class="fa fa-bolt" aria-hidden="true"></i> '+game.supervivientes[sz].liderazgo+ 
+            "</div>"+
+            "</div></div>";
             $("#columnaPj").append(jcnt);
         }
         game.selectPj(game.pjAct);
