@@ -125,9 +125,12 @@ body{
     margin-bottom:10px;
 }
 .localizacionimg div{
-    font-size:20px;
-    text-align: center;
+    font-size:16px;
     padding:5px;
+    font-weight:;
+}
+.localizacionimg div span{
+    font-size:20px;
     font-weight: bold;
 }
 .pjatributos{
@@ -151,4 +154,5 @@ body{
 .medio{
     width:50%;
     float:left;   
+    overflow: hidden;
 }

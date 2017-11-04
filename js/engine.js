@@ -51,6 +51,21 @@ var game={
         }
     },
     newGame: function(){
+        game.moral=0,
+        game.comida=6,
+        game.comidaEnCampamento=6,
+        game.turnoAct=1,
+        game.turnosTotales=0,
+        game.vertedero=0,
+        game.pilaMisAct=0,
+        game.cantSuperv=0,//Cantidad supervivientes
+        game.cantIndef=0,//Cantidad supervivientes indefensos
+        game.accRest=3,//Acciones restantes
+        game.hambrunas=0,
+        game.supervivientes=[],
+        game.listaLocalizaciones=[],
+        game.cntPj=0,
+        game.pjAct=-1,        
 		console.log("Se inicial el juego");
        game.turnosTotales=Math.round(Math.random()*15)+5;
        game.moral=Math.round(Math.random()*10)+5;
@@ -59,9 +74,11 @@ var game={
             
         game.mostrarDatos();  
             localizacion.generarCampamento();
-            localizacion.generar();
-            localizacion.generar();
-            localizacion.generar();
+
+            descubierto=Math.round(Math.random()*4)+1;
+            for(kl=0;kl<descubierto;kl++){
+                localizacion.generar();
+            }
             
             pjtots=Math.round(Math.random()*3)+2;
             pjar=[];
@@ -92,7 +109,7 @@ var game={
 	checkMoral:function(){
 		if(game.moral<=0){
 			alert("Game over");
-			$("body").html("GAME OVER, MOTHEFUCKER");
+			game.newGame();
 		}
 		
 	},

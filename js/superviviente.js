@@ -157,10 +157,11 @@ var superviviente={
                 
             }
         }
-        game.mostrarDatos();  
+        
         setTimeout(function(){
         localizacion.setDibujarLocalizaciones();
         superviviente.dibujarpj();
+        game.mostrarDatos();  
         },500);
     },
     limpiar: function(){
@@ -210,6 +211,7 @@ var superviviente={
         game.supervivientes=newar;
         if(game.supervivientes.length<=0){
             alert("Tu campamento de supervientes no tiene supervivientes. GAME OVER");
+            game.newGame();
         }        
         setTimeout(function(){
         superviviente.dibujarpj();
@@ -255,6 +257,7 @@ var superviviente={
         game.supervivientes=newar;
         if(game.supervivientes.length<=0){
             alert("Tu campamento de supervientes no tiene supervivientes. GAME OVER");
+            game.newGame();
         }        
         setTimeout(function(){
         superviviente.dibujarpj();

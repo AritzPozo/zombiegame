@@ -1,6 +1,7 @@
 var localizacion={
     nombre:"",
     foto:"",
+    calle:"",
     objetos:[],
     huecosZombieOcupados:0,
     huecosSupervivientesOcupados:[],
@@ -11,7 +12,7 @@ var localizacion={
         localizacion.nombre="Campamento"; 
         localizacion.huecosSupervivientes="10";
         localizacion.huecosZombie="10";
-      
+        localizacion.calle="";
         game.listaLocalizaciones.push({
              nombre:localizacion.nombre,
              foto:localizacion.foto,
@@ -19,6 +20,7 @@ var localizacion={
              huecosSupervivientes:localizacion.huecosSupervivientes,
              huecosZombie:localizacion.huecosZombie,
              ruido:localizacion.ruido,
+             calle:"",
              huecosZombieOcupados:localizacion.huecosZombieOcupados,
              huecosSupervivientesOcupados:localizacion.huecosSupervivientesOcupados,
          });
@@ -88,6 +90,8 @@ var localizacion={
                 ["Desguace",4,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
             ];
         }
+        
+        
        localizaElected=nombreLocalziaciones[Math.floor(Math.random() * nombreLocalziaciones.length)];
        localizacion.nombre=localizaElected[0];
        
@@ -107,6 +111,8 @@ var localizacion={
             huecosSupervivientes:localizacion.huecosSupervivientes,
             huecosZombie:localizacion.huecosZombie,
             ruido:localizacion.ruido,
+            calle:"",
+            calle:localizacion.calle,
             huecosZombieOcupados:localizacion.huecosZombieOcupados,
             huecosSupervivientesOcupados:localizacion.huecosSupervivientesOcupados,
         });
@@ -119,6 +125,7 @@ var localizacion={
             localizacion.huecosSupervivientes=obj['huecosSupervivientes'];
             localizacion.huecosZombie=obj['huecosZombie'];
             localizacion.ruido=obj['ruido'];
+            calle.ruido=obj['calle'];
             huecosZombieOcupados.ruido=obj['huecosZombieOcupados'];
             huecosSupervivientesOcupados.ruido=obj['huecosSupervivientesOcupados'];
 
@@ -145,7 +152,7 @@ var localizacion={
                 hz+="<div class='huechz huechzl'>z</div>";
                     x++;
             }                         
-            locaDesk="<div class='tercioLoc'><div class='locabox' onclick='superviviente.mover("+(li)+")'><div class='localizacionimg'><div>"+game.listaLocalizaciones[li].nombre+"</div></div>"+
+            locaDesk="<div class='tercioLoc'><div class='locabox' onclick='superviviente.mover("+(li)+")'><div class='localizacionimg'><div><span>"+game.listaLocalizaciones[li].nombre+"</span><br/>"+game.listaLocalizaciones[li].calle+"</div></div>"+
             "Spr.:"+hs+"<br/>"+
             "Zmb:"+hz+"<br/><div>"+
             "<div class='medio'><div class='mboton'>Buscar</div></div>"+
