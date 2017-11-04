@@ -1,6 +1,7 @@
 var game={
     moral:0,
     comida:6,
+    comidaEnCampamento:6,
     turnoAct:1,
     turnosTotales:0,
     vertedero:0,
