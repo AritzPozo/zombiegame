@@ -3,7 +3,7 @@ var localizacion={
     foto:"",
     objetos:[],
     huecosZombieOcupados:0,
-    huecosSupervivientesOcupados:0,
+    huecosSupervivientesOcupados:[],
     huecosSupervivientes:0,
     huecosZombie:0,
     ruido:0,
@@ -39,22 +39,24 @@ var localizacion={
         $("#columnaLocalizaciones").html("");
         for(li=0;li<game.listaLocalizaciones.length;li++){
             hs="";
-            for(i=0;i<localizacion.huecosSupervivientes;i++){
-                /*if(game.listaLocalizaciones[li].huecosSupervivientesOcupados>i){
-                    hs+="<div class='huechs'>x</div>";
-                }else{*/
-                    hs+="<div class='huechs'></div>";
-              //  }
+            x=0;
+            for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientes']-game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
+                hs+="<div class='huechs'></div>";
+                x++;
+            }
+            for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
+                    hs+="<div class='huechs huechsl'>"+game.listaLocalizaciones[li]['huecosSupervivientesOcupados'][i]+"</div>";
+                    x++;
             }
             hz="";
-            for(i=0;i<localizacion.huecosZombie;i++){
-               /* if(game.listaLocalizaciones[li].huecosZombieOcupados>i){
-                    hz+="<div class='huechz'>x</div>";
-                }else{*/
-                    hz+="<div class='huechz'></div>";
-                //}
-                
-            }              
+            for(i=0;i<game.listaLocalizaciones[li]['huecosZombie']-game.listaLocalizaciones[li]['huecosZombieOcupados'];i++){
+                hz+="<div class='huechz'></div>";
+                x++;
+            }
+            for(i=0;i<game.listaLocalizaciones[li]['huecosZombieOcupados'];i++){
+                hz+="<div class='huechz huechzl'>z</div>";
+                    x++;
+            }                         
             locaDesk="<div class='locabox' onclick='superviviente.mover("+(li)+")'><h2>"+game.listaLocalizaciones[li].nombre+"</h2>"+
             "Spr.:"+hs+"<br/>"+
             "Zmb:"+hz+

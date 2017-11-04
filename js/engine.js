@@ -31,8 +31,20 @@ var game={
         if(game.vertedero>10){
             moral--;
         }
-		game.checkMoral();
-        if(game.turnoAct==game.turnosTotales){
+        game.checkMoral();
+        for(li=0;li<game.listaLocalizaciones.length;li++){
+            for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
+                if(game.listaLocalizaciones[li]['huecosZombieOcupados']<game.listaLocalizaciones[li]['huecosZombie']){
+                    game.listaLocalizaciones[li]['huecosZombieOcupados']++;
+                    
+                }else{
+                    game.listaLocalizaciones[li]['huecosZombieOcupados']=game.listaLocalizaciones[li]['huecosZombie'];
+                    superviviente.serComido(li);
+                }
+            }
+        }
+        localizacion.setDibujarLocalizaciones();
+        if(game.turnoAct==game.turnosTotales || game.supervivientes.length<=0){
             alert("FIN DEL JUEGO");
         }
     },
@@ -53,7 +65,7 @@ var game={
         	localizacion.generar("Comisaria",3,3);
         	localizacion.generar("Supermercado",3,3);
         	localizacion.generar("Biblioteca",3,3);  
-			        
+            superviviente.dibujarpj();
        },500);
 
     },
@@ -78,6 +90,6 @@ var game={
 	selectPj: function(selectPj){
 		console.log("PJ ACTUAL: Superviviente n"+selectPj)
 		game.pjAct=selectPj;
-		superviviente.setpj(game.supervivientes[selectPj-1]);
+		superviviente.setpj(game.supervivientes[selectPj]);
 	}
 }
