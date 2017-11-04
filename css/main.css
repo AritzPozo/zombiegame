@@ -1,5 +1,6 @@
 body{
-    background:#CCCCCC;
+    background:black;
+    background-image: url('imgs/back.jpg');
     padding:0px;
     margin:0px;
 }
@@ -7,8 +8,6 @@ body{
     padding:5px;
     margin-bottom:5px;
     border:1px solid grey;
-    width:33%;
-    float:left;
     margin:10px;
     height:160px;
     background-color:white
@@ -19,7 +18,7 @@ body{
     border-bottom:3px solid #111111;
     color:white;
     padding:20px;
-    margin-bottom:20px;
+    
 }
 #datosGame span{
     font-weight: bold;
@@ -37,7 +36,12 @@ body{
     cursor:pointer;
 }
 #contenido{
-
+    background-image: url('imgs/topper.jpg');
+    background-repeat: no-repeat;
+    background-size:100% auto;
+    height:90%;
+    padding:20px;
+    padding-top:50px;
 }
 #columnaPj{
     float:left;
@@ -124,4 +128,14 @@ body{
 .tercio{
     float:left;
     width:33.3%;
+}
+.tercioLoc{
+    width:33.3%;
+    float:left;
+}
+@media(max-width:900px){
+    .tercioLoc{
+        width:50%;
+        float:left;
+    }   
 }
