@@ -97,10 +97,12 @@ var game={
 		
 	},
 	selectPj: function(selectPj){
-		console.log("PJ ACTUAL: "+game.supervivientes[selectPj].nombre)
-        game.pjAct=selectPj;
-        $(".pjbox").css("border","1px solid black");
-        $("#selpj"+selectPj).css("border-left","5px solid red");
-		superviviente.setpj(game.supervivientes[selectPj]);
+        if(selectPj>-1){
+            console.log("PJ ACTUAL: "+game.supervivientes[selectPj].nombre)
+            game.pjAct=selectPj;
+            $(".pjbox").css("border","1px solid black");
+            $("#selpj"+selectPj).css("border-left","5px solid red");
+            superviviente.setpj(game.supervivientes[selectPj]);
+        }
 	}
 }
