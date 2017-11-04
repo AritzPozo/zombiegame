@@ -27,7 +27,7 @@ var game={
 			 game.comida=0;
 		}
 		game.checkMoral();
-        game.accRest=game.cantSuperv+1;
+        
 		game.mostrarDatos();  
         if(game.vertedero>10){
             moral--;
@@ -55,8 +55,8 @@ var game={
        game.moral=Math.round(Math.random()*10)+5;
        game.generarMision();
        setTimeout(function(){
-            game.mostrarDatos();  
-       
+            
+        game.mostrarDatos();  
 			localizacion.generar("Campamento",20,15);
     		localizacion.generar("Hospital",3,3);
         	localizacion.generar("Colegio",3,3);
@@ -72,7 +72,9 @@ var game={
                 
             }   
             game.listaLocalizaciones[0]['huecosSupervivientesOcupados']=pjar;         
+            game.accRest=game.cantSuperv+1;
             superviviente.dibujarpj();
+            game.mostrarDatos();  
        },500);
 
     },

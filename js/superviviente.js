@@ -172,6 +172,8 @@ var superviviente={
         game.listaLocalizaciones[posLocal]['huecosSupervivientesOcupados'];
         lidmin=99999;
         pjamorir=-1;
+        game.cntPj--;
+        game.moral--;
         for(sz=0;sz<game.listaLocalizaciones[posLocal]['huecosSupervivientesOcupados'].length;sz++){
             console.log(game.supervivientes[sz]['nombre']+"=>"+game.supervivientes[sz]['liderazgo'])
             if(game.supervivientes[sz]['liderazgo']<lidmin){
@@ -201,6 +203,7 @@ var superviviente={
         setTimeout(function(){
         superviviente.dibujarpj();
         localizacion.setDibujarLocalizaciones();
+        game.mostrarDatos();
         },500);
     },
     serComidoPorPj: function(pjamorir,tipoMuerte){
@@ -209,6 +212,8 @@ var superviviente={
             0 - ha sido zampado
             1 - ha muerto herido
         */
+        game.cntPj--;
+        game.moral--;
         local=game.supervivientes[pjamorir].posicion;
         if(tipoMuerte==0){
             alert(game.supervivientes[pjamorir].nombre+" ha sido mordido y convertido en zombie.");
@@ -238,7 +243,11 @@ var superviviente={
         setTimeout(function(){
         superviviente.dibujarpj();
         localizacion.setDibujarLocalizaciones();
+        
         },500);
+        setTimeout(function(){
+            game.mostrarDatos();;
+        },1000)
     },
     dibujarpj: function(){
         pjcont="";
@@ -285,6 +294,8 @@ var superviviente={
             "</div></div>";
             $("#columnaPj").append(jcnt);
         }
-        game.selectPj(game.pjAct);
+        if(game.pjAct!=-1){
+            game.selectPj(game.pjAct);
+        }
     }
 }
