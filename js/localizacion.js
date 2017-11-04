@@ -50,7 +50,9 @@ var localizacion={
             ];
         }else if(randomLoc<0.85){ //comercios
             nombreLocalziaciones=[
+                ["Iglesia",3,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Tienda de ropa",1,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
+                ["Clinica veterinaria",1,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Tienda de comida",2,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Taller de coches",3,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Tienda de instrumentos",1,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
@@ -66,6 +68,9 @@ var localizacion={
             ] 
         }else{ //edificios institucionales
             nombreLocalziaciones=[
+                ["Catedral",5,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
+                ["Monasterio",5,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
+                ["Cementerio",5,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Estaci&oacute;n de metro",5,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Estaci&oacute;n de autobuses",5,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Universidad",15,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
@@ -80,6 +85,7 @@ var localizacion={
                 ["Comisaria",5,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Aeropuerto",15,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
                 ["Ayuntamiento",4,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
+                ["Desguace",4,{armas:0,medicina:0,comida:0,trastos:0,combustible:0,agua:0}],
             ];
         }
        localizaElected=nombreLocalziaciones[Math.floor(Math.random() * nombreLocalziaciones.length)];

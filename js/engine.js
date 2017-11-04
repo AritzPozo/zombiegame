@@ -74,6 +74,7 @@ var game={
             game.accRest=game.cantSuperv+1;
             superviviente.dibujarpj();
             game.mostrarDatos();  
+            localizacion.setDibujarLocalizaciones();
        },500);
 
     },
