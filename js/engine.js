@@ -55,11 +55,8 @@ var game={
        game.moral=Math.round(Math.random()*10)+5;
        game.generarMision();
        setTimeout(function(){
-        	game.mostrarDatos();  
-       s1=superviviente.generar();
-       game.supervivientes.push(s1);
-       s2=superviviente.generar();
-       game.supervivientes.push(s2);			
+            game.mostrarDatos();  
+       
 			localizacion.generar("Campamento",20,15);
     		localizacion.generar("Hospital",3,3);
         	localizacion.generar("Colegio",3,3);
@@ -67,6 +64,15 @@ var game={
         	localizacion.generar("Supermercado",3,3);
         	localizacion.generar("Biblioteca",3,3);  
             superviviente.dibujarpj();
+            pjtots=Math.round(Math.random()*3)+2;
+            pjar=[];
+            for(ipj=0;ipj<pjtots;ipj++){
+                superviviente.generar();
+                pjar.push(ipj);
+                
+            }   
+            game.listaLocalizaciones[0]['huecosSupervivientesOcupados']=pjar;         
+
        },500);
 
     },
@@ -90,7 +96,9 @@ var game={
 	},
 	selectPj: function(selectPj){
 		console.log("PJ ACTUAL: Superviviente n"+selectPj)
-		game.pjAct=selectPj;
+        game.pjAct=selectPj;
+        $("#selpj"+selectPj).css("border","1px solid black");
+        $("#selpj"+selectPj).css("border-left","5px solid red");
 		superviviente.setpj(game.supervivientes[selectPj]);
 	}
 }
