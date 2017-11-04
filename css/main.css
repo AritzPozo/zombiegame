@@ -10,7 +10,7 @@ body{
     width:33%;
     float:left;
     margin:10px;
-    height:120px;
+    height:150px;
     background-color:white
 }
 #datosGame{
@@ -28,9 +28,12 @@ body{
     margin-top:-5px;
 }
 .pjbox{
-    padding:5px;
-    margin-bottom:5px;
+    padding:10px;
+    margin-bottom:10px;
     border:1px solid grey;
+    height:60px;
+    background-color:white;
+    cursor:pointer;
 }
 #contenido{
 
@@ -82,4 +85,22 @@ body{
     font-size:10px;
     color:white;
     text-align: center;   
+}
+.pjimg{
+    width:60px;
+    height:60px;
+    border:1px solid black;
+    float:left;
+}
+.pjdatos{
+    margin-left:70px;
+}
+.pjdatos b{
+    font-size:20px;
+    text-transform: capitalize;
+}
+.locaimg{
+    border:1px solid black;
+    height:80px;
+    margin-bottom:10px;
 }
