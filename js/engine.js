@@ -63,7 +63,7 @@ var game={
         	localizacion.generar("Comisaria",3,3);
         	localizacion.generar("Supermercado",3,3);
         	localizacion.generar("Biblioteca",3,3);  
-            superviviente.dibujarpj();
+            
             pjtots=Math.round(Math.random()*3)+2;
             pjar=[];
             for(ipj=0;ipj<pjtots;ipj++){
@@ -72,7 +72,7 @@ var game={
                 
             }   
             game.listaLocalizaciones[0]['huecosSupervivientesOcupados']=pjar;         
-
+            superviviente.dibujarpj();
        },500);
 
     },
