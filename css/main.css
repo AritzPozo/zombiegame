@@ -10,7 +10,8 @@ body{
     border:1px solid grey;
     margin:10px;
     height:160px;
-    background-color:white
+    background-color:white;
+    transition:1s;
 }
 
 #datosGame{
@@ -34,6 +35,7 @@ body{
     height:80px;
     background-color:white;
     cursor:pointer;
+    transition:1s;
 }
 #contenido{
     background-image: url('imgs/topper.jpg');
@@ -155,4 +157,7 @@ body{
     width:50%;
     float:left;   
     overflow: hidden;
+}
+.casillalista{
+    height:30px;
 }

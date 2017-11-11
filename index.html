@@ -6,15 +6,18 @@
         <script src="./js/inventario.js"></script>
         <script src="./js/localizacion.js"></script>
         <script src="./js/superviviente.js"></script>
+        <script src="./js/timecontrol.js"></script>
         <link rel="stylesheet" href="./css/main.css">
         <link rel="stylesheet" href="./css/font-awesome.min.css">
         <script>
             game.newGame();
         </script>
     </head>
-    <body>
-        <div id='datosGame' onclick='game.nextRound()'>
-            <div class='boton'>Next!</div>
+    <body onload='time.next()'>
+        <div id='datosGame' >
+            <div id="pause" class='boton' onclick='time.setPausa()'>PAUSE</div>
+            <div class='boton' onclick='superviviente.explorar()'>Explorar</div>
+            Horas: <span id='horas'></span>
             Moral: <span id='moral'></span>
             Turno: <span id='turno'></span
             supervivientes: <span id='supervivientes'></span>

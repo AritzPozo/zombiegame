@@ -10,8 +10,8 @@ var localizacion={
     ruido:0,
     generarCampamento: function(){
         localizacion.nombre="Campamento"; 
-        localizacion.huecosSupervivientes="10";
-        localizacion.huecosZombie="10";
+        localizacion.huecosSupervivientes=10;
+        localizacion.huecosZombie=10;
         localizacion.calle="";
         game.listaLocalizaciones.push({
              nombre:localizacion.nombre,
@@ -24,7 +24,32 @@ var localizacion={
              huecosZombieOcupados:localizacion.huecosZombieOcupados,
              huecosSupervivientesOcupados:localizacion.huecosSupervivientesOcupados,
          });
-         localizacion.setDibujarLocalizaciones();
+         //localizacion.setDibujarLocalizaciones();
+         setTimeout(function(){
+            li=0;
+            hs="";
+            for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientes'];i++){
+                hs+="<div class='huechs'></div>";
+                i++;
+            }
+            hz="";
+            for(i=0;i<game.listaLocalizaciones[li]['huecosZombie'];i++){
+                hz+="<div class='huechz'></div>";
+                i++;
+            }                       
+            locaDesk="<div class='tercioLoc'><div style='opacty:0' class='locabox' id='localId"+li+"' onclick='superviviente.mover("+(li)+")'><div class='localizacionimg'><div><span>"+game.listaLocalizaciones[li].nombre+"</span><br/>"+game.listaLocalizaciones[li].calle+"</div></div>"+
+            "<div  class='casillalista' id='supervivientes"+li+"'>"+hs+"</div>"+
+            "<div  class='casillalista' id='zombie"+li+"'>"+hz+"</div><div>"+
+            "<div class='medio'><div class='mboton'>Buscar</div></div>"+
+            "<div class='medio'><div class='mboton'>Matar zombies</div></div>"+
+            "</div></div></div>";
+            $("#columnaLocalizaciones").append(locaDesk);
+            setTimeout(function(){
+                $("#localId"+li).css("opacity",1);
+                localizacion.recalcSUperviviente(li);
+                localizacion.recalcZombies(li);
+            },250);
+        },500);
      },    
     generar: function(){
         randomLoc=Math.random();
@@ -116,7 +141,39 @@ var localizacion={
             huecosZombieOcupados:localizacion.huecosZombieOcupados,
             huecosSupervivientesOcupados:localizacion.huecosSupervivientesOcupados,
         });
-        localizacion.setDibujarLocalizaciones();
+        setTimeout(function(){
+            li=game.listaLocalizaciones.length-1;
+            hs="";
+            for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientes']-game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
+                hs+="<div class='huechs'></div>";
+                i++;
+            }
+            /*for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
+                    hs+="<div class='huechs huechsl'>"+game.listaLocalizaciones[li]['huecosSupervivientesOcupados'][i]+"</div>";
+                    x++;
+            }*/
+            hz="";
+            for(i=0;i<game.listaLocalizaciones[li]['huecosZombie']-game.listaLocalizaciones[li]['huecosZombieOcupados'];i++){
+                hz+="<div class='huechz'></div>";
+                i++;
+            }
+            for(i=0;i<game.listaLocalizaciones[li]['huecosZombieOcupados'];i++){
+                hz+="<div class='huechz huechzl'>z</div>";
+                   i++;
+            }                         
+            locaDesk="<div class='tercioLoc'><div style='opacty:0' class='locabox' id='localId"+li+"' onclick='superviviente.mover("+(li)+")'><div class='localizacionimg'><div><span>"+game.listaLocalizaciones[li].nombre+"</span><br/>"+game.listaLocalizaciones[li].calle+"</div></div>"+
+            "<div class='casillalista' id='supervivientes"+li+"'>"+hs+"</div>"+
+            "<div  class='casillalista' id='zombie"+li+"'>"+hz+"</div><div>"+
+            "<div class='medio'><div class='mboton'>Buscar</div></div>"+
+            "<div class='medio'><div class='mboton'>Matar zombies</div></div>"+
+            "</div></div></div>";
+            $("#columnaLocalizaciones").append(locaDesk);
+            setTimeout(function(){
+                $("#localId"+li).css("opacity",1);
+                localizacion.recalcSUperviviente(li);
+                localizacion.recalcZombies(li);
+            },100);
+        },500);
     },
     setLocalizacion: function(obj){
             localizacion.nombre=obj['nombre'];
@@ -130,38 +187,32 @@ var localizacion={
             huecosSupervivientesOcupados.ruido=obj['huecosSupervivientesOcupados'];
 
     },
-    setDibujarLocalizaciones: function(){
-        $("#columnaLocalizaciones").html("");
-        for(li=0;li<game.listaLocalizaciones.length;li++){
-            hs="";
-            x=0;
-            for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientes']-game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
-                hs+="<div class='huechs'></div>";
-                x++;
-            }
-            for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
-                    hs+="<div class='huechs huechsl'>"+game.listaLocalizaciones[li]['huecosSupervivientesOcupados'][i]+"</div>";
-                    x++;
-            }
-            hz="";
-            for(i=0;i<game.listaLocalizaciones[li]['huecosZombie']-game.listaLocalizaciones[li]['huecosZombieOcupados'];i++){
-                hz+="<div class='huechz'></div>";
-                x++;
-            }
-            for(i=0;i<game.listaLocalizaciones[li]['huecosZombieOcupados'];i++){
-                hz+="<div class='huechz huechzl'>z</div>";
-                    x++;
-            }                         
-            locaDesk="<div class='tercioLoc'><div class='locabox' onclick='superviviente.mover("+(li)+")'><div class='localizacionimg'><div><span>"+game.listaLocalizaciones[li].nombre+"</span><br/>"+game.listaLocalizaciones[li].calle+"</div></div>"+
-            "Spr.:"+hs+"<br/>"+
-            "Zmb:"+hz+"<br/><div>"+
-            "<div class='medio'><div class='mboton'>Buscar</div></div>"+
-            "<div class='medio'><div class='mboton'>Matar zombies</div></div>"+
-            "</div></div></div>";
-            $("#columnaLocalizaciones").append(locaDesk);
+    recalcSUperviviente: function(locali){
+        li=locali;
+        hs=hs;
+        for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientes']-game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
+            hs+="<div class='huechs'></div>";
+            i++;
         }
-        locaDesk="<div class='tercioLoc'><div class='locabox' onclick='superviviente.explorar()'><div class='localizacionimg'><div>Explorar la ciudad</div></div>"+
-        "</div></div>";
-        $("#columnaLocalizaciones").append(locaDesk);
-    }
+        for(i=0;i<game.listaLocalizaciones[li]['huecosSupervivientesOcupados'].length;i++){
+                hs+="<div class='huechs huechsl'>"+game.listaLocalizaciones[li]['huecosSupervivientesOcupados'][i]+"</div>";
+                i++;
+        }
+        $("#supervivientes"+locali).html(hs);
+
+    },
+    recalcZombies: function(locali){
+        li=locali;
+        hz="";
+        for(ix=0;i<game.listaLocalizaciones[li]['huecosZombie']-game.listaLocalizaciones[li]['huecosZombieOcupados'];ix++){
+            hz+="<div class='huechz'></div>";
+            ix++;
+        }
+        for(ix=0;ix<game.listaLocalizaciones[li]['huecosZombieOcupados'];ix++){
+            hz+="<div class='huechz huechzl'>z</div>";
+               ix++;
+        }  
+        
+        $("#zombie"+locali).html(hz);
+    },    
 }

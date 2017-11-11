@@ -77,21 +77,25 @@ var game={
 
             descubierto=Math.round(Math.random()*4)+1;
             for(kl=0;kl<descubierto;kl++){
-                localizacion.generar();
+                setTimeout(function(){
+                    localizacion.generar();
+                },500*kl);
             }
             
-            pjtots=Math.round(Math.random()*3)+2;
+            pjtots=Math.round(Math.random()*2)+3;
             pjar=[];
             for(ipj=0;ipj<pjtots;ipj++){
-                superviviente.generar();
-                pjar.push(ipj);
+                setTimeout(function(){
+                    superviviente.generar();
+                },500*ipj);
+                
                 
             }   
             game.listaLocalizaciones[0]['huecosSupervivientesOcupados']=pjar;         
             game.accRest=game.cantSuperv+1;
-            superviviente.dibujarpj();
+            //superviviente.dibujarpj();
             game.mostrarDatos();  
-            localizacion.setDibujarLocalizaciones();
+         //   localizacion.setDibujarLocalizaciones();
        },500);
 
     },
